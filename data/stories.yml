@@ -1,0 +1,84 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+
+- story: interactive_story_1
+  steps:
+  - intent: connector
+  - action: connector_form
+  - active_loop: connector_form
+  - slot_was_set:
+    - requested_slot: source
+  - intent: inform
+    entities:
+    - source: Salesforce
+  - slot_was_set:
+    - source: Salesforce
+  - action: connector_form
+  - slot_was_set:
+    - source: Salesforce
+  - slot_was_set:
+    - requested_slot: destination
+  - intent: inform
+    entities:
+    - destination: google-sheets
+  - slot_was_set:
+    - destination: google-sheets
+  - action: connector_form
+  - slot_was_set:
+    - destination: google-sheets
+  - slot_was_set:
+    - requested_slot: source_variable
+  - intent: inform
+    entities:
+    - source_variable: Updated Field On Record
+  - slot_was_set:
+    - source_variable: Updated Field On Record
+  - action: connector_form
+  - slot_was_set:
+    - source_variable: Updated Field On Record
+  - slot_was_set:
+    - requested_slot: destination_variable
+  - intent: inform
+    entities:
+    - destination_variable: Delete Row
+  - slot_was_set:
+    - destination_variable: Delete Row
+  - action: connector_form
+  - slot_was_set:
+    - destination_variable: Delete Row
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_connector_slots
+  - intent: goodbye
+  - action: utter_goodbye
