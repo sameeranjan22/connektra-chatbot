@@ -10,18 +10,6 @@ nlu:
     - good evening
     - moin
     - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-    - yo
-    - hello world
-    - hi there
-    - Hey
-    - Hey!
-    - Hi
-    - Gi
 - intent: goodbye
   examples: |
     - cu
@@ -37,6 +25,7 @@ nlu:
     - thanks, goodbye
     - Thanks
     - Thank you
+    - thanks
 - intent: connector
   examples: |
     - I want to build a connector
@@ -52,82 +41,167 @@ nlu:
     - I need some Connectors Information
     - I want a connector
     - i want a connector
+    - connector
+    - I neeed a connector
 - intent: inform
   examples: |
-    - I want a connector from [Salesforce](source)
-    - I want a connector to [Sheets](destination)
-    - I want a connector from [Salesforce](source) to [Sheets](destination)
-    - I want to connect my [Salesforce](source) to [Sheets](destination)
-    - I want to connect [New Contact](source_variable) variable of [Salesforce](source) to [Delete Row](destination_variable) of [Sheets](destination)
-    - I want a connector from [New Contact](source_variable) variable of [Salesforce](source)
-    - I want a connector to [Delete Row](destination_variable) variable of [Sheets](destination)
-    - [Salesforce](source)
-    - [Mailchimp](source)
-    - [Jira](source)
-    - [Zoom](source)
-    - [Mailchimp](destination)
-    - [Jira](destination)
-    - [Slack](destination)
-    - [Slack](source)
-    - [Sheets](destination)
-    - [Updated Field On Record](source_variable)
-    - [Delete Row](destination_variable)
-    - [salesforce]{"entity": "source", "value": "Salesforce"}
-    - [google-sheets](destination)
-    - [Updated Field On Record](source_variable)
-    - [Delete Row](destination_variable)
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - I want a connector from [Salesforce]{"entity": "api", "role": "source"}
+    - I want a connector to [Sheets]{"entity": "api", "role": "destination"}
+    - I want a connector from [Salesforce]{"entity": "api", "role": "source"} to [Sheets]{"entity": "api", "role": "destination"}
+    - I want to connect my [Salesforce]{"entity": "api", "role": "source"} to [Sheets]{"entity": "api", "role": "destination"}
+    - I want to connect [New Contact]{"entity": "variable", "role": "source"} variable of [Salesforce]{"entity": "api", "role": "source"} to [Delete Row]{"entity": "variable", "role": "destination"} of [Sheets]{"entity": "api", "role": "destination"}
+    - I want a connector from [New Contact]{"entity": "variable", "role": "source"} variable of [Salesforce]{"entity": "api", "role": "source"}
+    - I want a connector to [Delete Row]{"entity": "variable", "role": "destination"} variable of [Sheets]{"entity": "api", "role": "destination"}
+    - [Salesforce]{"entity": "api"}
+    - [Salesforce]{"entity": "api"}
+    - [Mailchimp](api)
+    - [Jira](api)
+    - [Zoom](api)
+    - [Slack](api)
+    - [Sheets](api)
+    - [Updated Field On Record](variable)
+    - [Delete Row](variable)
+    - [salesforce]{"entity": "api", "value": "Salesforce"}
+    - [google-sheets](api)
+    - [Hubspot](api)
+    - [gmail](api)
+    - [bitrix24](api)
+    - [calendly](api)
+    - [stripe](api)
+    - [airtable](api)
+    - [twilio](api)
+    - [razorpay](api)
+    - [figma](api)
+    - [intercom](api)
+    - [wordpress](api)
+    - [zendesk](api)
+    - [monday](api)
+    - [typeform](api)
+    - [New Contact](variable)
+    - [New Task](variable)
+    - [New Lead](variable)
+    - [New Account](variable)
+    - [New Opportunity](variable)
+    - [Get Fields For Object](variable)
+    - [New Record](variable)
+    - [Lead Is Created](variable)
+    - [Contact Is Updated](variable)
+    - [Update Contact](variable)
+    - [Get Campaigns](variable)
+    - [Get Contacts](variable)
+    - [Task Is Updated](variable)
+    - [Account Is Created](variable)
+    - [Watch Records](variable)
+    - [Quote Is Created](variable)
+    - [New Outbound Message](variable)
+    - [Get Queryable Objects](variable)
+    - [Case Is Created](variable)
+    - [Get Creatable Objects](variable)
+    - [Get Records For Object](variable)
+    - [Quote Is Updated](variable)
+    - [Get Updateable Objects](variable)
+    - [Watch Jobs](variable)
+    - [Contact Is Created](variable)
+    - [Task Is Created](variable)
+    - [Create Company](variable)
+    - [Create Deal](variable)
+    - [Update Deal](variable)
+    - [Update Company](variable)
+    - [Create Engagement](variable)
+    - [Add Contact To Workflow](variable)
+    - [Find Contact](variable)
+    - [Get Deal](variable)
+    - [Update Ticket](variable)
+    - [Create Calendar Task](variable)
+    - [Add Contact To List](variable)
+    - [Create Ticket](variable)
+    - [Submit Data To Form](variable)
+    - [Get File Public Url](variable)
+    - [Create Social Media Message](variable)
+    - [Create Associations](variable)
+    - [Update Product](variable)
+    - [Find Associations](variable)
+    - [Create Product](variable)
+    - [Find Deal](variable)
+    - [Remove Contact From List](variable)
+    - [Create Blog Post](variable)
+    - [Create Form Submission](variable)
+    - [Remove Contact From Workflow](variable)
+    - [Make Api Call](variable)
+    - [Find Deal By Id](variable)
+    - [Archive Company](variable)
+    - [Search For Contacts](variable)
+    - [Archive Product](variable)
+    - [Associate Deal With Company](variable)
+    - [Associate Deal With Contact](variable)
+    - [Associate Multiple Crm Objects](variable)
+    - [Cancel Broadcast Message](variable)
+    - [Delete Calendar Task](variable)
+    - [Update Email Subscription](variable)
+    - [Find Contact By Email](variable)
+    - [List Files](variable)
+    - [Move File](variable)
+    - [Create Channel](variable)
+    - [Send Channel Message](variable)
+    - [Set Channel Topic](variable)
+    - [Send Direct Message](variable)
+    - [Add Star](variable)
+    - [salesforce]{"entity": "api", "value": "Salesforce"}
+    - [hubspot]{"entity": "api", "value": "Hubspot"}
+    - [Task Is Created](variable)
+    - [List Forms](variable)
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- synonym: Salesforce
+  examples: |
+    - salesforce
+- lookup: source
+  examples: |
+    - salesforce
+    - hubspot
+    - slack
+    - google-sheets
+    - gmail
+    - bitrix24
+    - calendly
+    - mailchimp
+    - stripe
+    - airtable
+    - twilio
+    - razorpay
+    - figma
+    - intercom
+    - wordpress
+    - zoom
+    - typeform
+    - jira
+    - bamboohr
+    - zendesk
+    - monday
+- lookup: destination
+  examples: |
+    - salesforce
+    - hubspot
+    - slack
+    - google-sheets
+    - gmail
+    - bitrix24
+    - calendly
+    - mailchimp
+    - stripe
+    - airtable
+    - twilio
+    - razorpay
+    - figma
+    - intercom
+    - wordpress
+    - zoom
+    - typeform
+    - jira
+    - bamboohr
+    - zendesk
+    - monday

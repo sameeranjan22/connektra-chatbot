@@ -1,42 +1,52 @@
 version: '3.1'
 intents:
-- affirm
 - bot_challenge
 - connector
-- deny
 - enquire_connector_details
 - goodbye
 - greet
 - inform
-- mood_great
-- mood_unhappy
 - request_connector_form
 entities:
-- source_variable
-- destination_variable
-- source
-- destination
+- api
+- variable
 slots:
   source:
     type: text
     mappings:
     - type: from_entity
-      entity: source
+      entity: api
+      #role: source
+      conditions:
+      - active_loop: connector_form
+        requested_slot: source
+        
   destination:
     type: text
     mappings:
     - type: from_entity
-      entity: destination
+      entity: api
+      #role: destination
+      conditions:
+      - active_loop: connector_form
+        requested_slot: destination
+        
   source_variable:
     type: text
     mappings:
     - type: from_entity
-      entity: source_variable
+      entity: variable
+      conditions:
+      - active_loop: connector_form
+        requested_slot: source_variable
   destination_variable:
     type: text
     mappings:
     - type: from_entity
-      entity: destination_variable
+      entity: variable
+      conditions:
+      - active_loop: connector_form
+        requested_slot: destination_variable
 forms:
   connector_form:
     required_slots:
@@ -73,9 +83,9 @@ responses:
   utter_ask_destination_variable:
   - text: What destination variable do you want for the connection?
 actions:
-- utter_goodbye
 - utter_connector_slots
 - utter_submit
+- utter_goodbye
 - utter_ask_destination
 - utter_ask_source
 - utter_ask_source_variable

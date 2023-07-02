@@ -29,11 +29,11 @@ rules:
   - action: utter_submit
   - action: utter_connector_slots
 
-# - rule: Interruption in Connector Form
-#   condition:
-#   -active_loop: connector_form
-#   steps:
-#   -intent: bot_challenge
-#   -action: utter_iamabot
-#   -action: connector_form
-#   -active_loop: connector_form
+- rule: Interruption in Connector form
+  condition:
+  - active_loop: connector_form
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: connector_form
+  - active_loop: connector_form
