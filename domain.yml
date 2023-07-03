@@ -2,12 +2,20 @@ version: '3.1'
 intents:
 - bot_challenge
 - connector
+- destination_inform
+- destination_variable_inform
 - enquire_connector_details
 - goodbye
 - greet
 - inform
 - request_connector_form
+- source_inform
+- source_variable_inform
 entities:
+- destination_variable
+- destination
+- source_variable
+- source
 - api
 - variable
 slots:
@@ -15,38 +23,22 @@ slots:
     type: text
     mappings:
     - type: from_entity
-      entity: api
-      #role: source
-      conditions:
-      - active_loop: connector_form
-        requested_slot: source
-        
+      entity: source
   destination:
     type: text
     mappings:
     - type: from_entity
-      entity: api
-      #role: destination
-      conditions:
-      - active_loop: connector_form
-        requested_slot: destination
-        
+      entity: destination
   source_variable:
     type: text
     mappings:
     - type: from_entity
-      entity: variable
-      conditions:
-      - active_loop: connector_form
-        requested_slot: source_variable
+      entity: source_variable
   destination_variable:
     type: text
     mappings:
     - type: from_entity
-      entity: variable
-      conditions:
-      - active_loop: connector_form
-        requested_slot: destination_variable
+      entity: destination_variable
 forms:
   connector_form:
     required_slots:
@@ -55,8 +47,92 @@ forms:
     - source_variable
     - destination_variable
 responses:
-  utter_greet:
-  - text: Hey! How are you?
+  utter_source:
+  - text: Hi User! What platforms would you like to integrate today?
+    buttons:
+    - title: Salesforce
+      payload: /source_inform{{"source":"salesforce"}}
+    - title: Mailchimp
+      payload: /source_inform{{"source":"mailchimp"}}
+    - title: Jira
+      payload: /source_inform{{"source":"jira"}}
+    - title: Zoom
+      payload: /source_inform{{"source":"zoom"}}
+    - title: Slack
+      payload: /source_inform{{"source":"slack"}}
+    - title: Google Sheets
+      payload: /source_inform{{"source":"google-sheets"}}
+    - title: Hubspot
+      payload: /source_inform{{"source":"hubspot"}}
+    - title: Gmail
+      payload: /source_inform{{"source":"gmail"}}
+    - title: Bitrix24
+      payload: /source_inform{{"source":"bitrix24"}}
+    - title: Calendly
+      payload: /source_inform{{"source":"calendly"}}
+    - title: Stripe
+      payload: /source_inform{{"source":"stripe"}}
+    - title: Airtable
+      payload: /source_inform{{"source":"airtable"}}
+    - title: Twilio
+      payload: /source_inform{{"source":"twilio"}}
+    - title: Razorpay
+      payload: /source_inform{{"source":"razorpay"}}
+    - title: Figma
+      payload: /source_inform{{"source":"figme"}}
+    - title: Intercom
+      payload: /source_inform{{"source":"intercom"}}
+    - title: Wordpress
+      payload: /source_inform{{"source":"wordpress"}}
+    - title: Zendesk
+      payload: /source_inform{{"source":"zendesk"}}
+    - title: Monday
+      payload: /source_inform{{"source":"monday"}}
+    - title: Typeform
+      payload: /source_inform{{"source":"typeform"}}
+  utter_destination:
+  - text: To which platform would you like to connect {source}?
+    buttons:
+    - title: Salesforce
+      payload: /destination_inform{{"destination":"salesforce"}}
+    - title: Mailchimp
+      payload: /destination_inform{{"destination":"mailchimp"}}
+    - title: Jira
+      payload: /destination_inform{{"destination":"jira"}}
+    - title: Zoom
+      payload: /destination_inform{{"destination":"zoom"}}
+    - title: Slack
+      payload: /destination_inform{{"destination":"slack"}}
+    - title: Google Sheets
+      payload: /destination_inform{{"destination":"google-sheets"}}
+    - title: Hubspot
+      payload: /destination_inform{{"destination":"hubspot"}}
+    - title: Gmail
+      payload: /destination_inform{{"destination":"gmail"}}
+    - title: Bitrix24
+      payload: /destination_inform{{"destination":"bitrix24"}}
+    - title: Calendly
+      payload: /destination_inform{{"destination":"calendly"}}
+    - title: Stripe
+      payload: /destination_inform{{"destination":"stripe"}}
+    - title: Airtable
+      payload: /destination_inform{{"destination":"airtable"}}
+    - title: Twilio
+      payload: /destination_inform{{"destination":"twilio"}}
+    - title: Razorpay
+      payload: /destination_inform{{"destination":"razorpay"}}
+    - title: Figma
+      payload: /destination_inform{{"destination":"figme"}}
+    - title: Intercom
+      payload: /destination_inform{{"destination":"intercom"}}
+    - title: Wordpress
+      payload: /destination_inform{{"destination":"wordpress"}}
+    - title: Zendesk
+      payload: /destination_inform{{"destination":"zendesk"}}
+    - title: Monday
+      payload: /destination_inform{{"destination":"monday"}}
+    - title: Typeform
+      payload: /destination_inform{{"destination":"typeform"}}
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -83,9 +159,13 @@ responses:
   utter_ask_destination_variable:
   - text: What destination variable do you want for the connection?
 actions:
+- utter_source
+- action_destination_variable
+- utter_goodbye
+- action_source_variable
+- utter_destination
 - utter_connector_slots
 - utter_submit
-- utter_goodbye
 - utter_ask_destination
 - utter_ask_source
 - utter_ask_source_variable

@@ -43,6 +43,85 @@ nlu:
     - i want a connector
     - connector
     - I neeed a connector
+- intent: source_inform
+  examples: |
+    - [Salesforce](source)
+    - [Mailchimp](source)
+    - [Jira](source)
+    - [Zoom](source)
+    - [Slack](source)
+    - [Sheets](source)
+    - [Updated Field On Record](source)
+    - [google-sheets](source)
+    - [Hubspot](source)
+    - [gmail](source)
+    - [bitrix24](source)
+    - [calendly](source)
+    - [stripe](source)
+    - [airtable](source)
+    - [twilio](source)
+    - [razorpay](source)
+    - [figma](source)
+    - [intercom](source)
+    - [wordpress](source)
+    - [zendesk](source)
+    - [monday](source)
+    - [typeform](source)
+- intent: destination_inform
+  examples: |
+    - [Salesforce](destination)
+    - [Mailchimp](destination)
+    - [Jira](destination)
+    - [Zoom](destination)
+    - [Slack](destination)
+    - [Sheets](destination)
+    - [Updated Field On Record](destination)
+    - [google-sheets](destination)
+    - [Hubspot](destination)
+    - [gmail](destination)
+    - [bitrix24](destination)
+    - [calendly](destination)
+    - [stripe](destination)
+    - [airtable](destination)
+    - [twilio](destination)
+    - [razorpay](destination)
+    - [figma](destination)
+    - [intercom](destination)
+    - [wordpress](destination)
+    - [zendesk](destination)
+    - [monday](destination)
+    - [typeform](destination)
+- intent: source_variable_inform
+  examples: |
+    - [New Contact](source_variable)
+    - [New Task](source_variable)
+    - [New Lead](source_variable)
+    - [New Account](source_variable)
+    - [New Opportunity](source_variable)
+    - [Get Fields For Object](source_variable)
+    - [New Record](source_variable)
+    - [Lead Is Created](source_variable)
+    - [Contact Is Updated](source_variable)
+    - [Update Contact](source_variable)
+    - [Get Campaigns](source_variable)
+    - [Get Contacts](source_variable)
+    - [Task Is Updated](source_variable)
+- intent: destination_variable_inform
+  examples: |
+    - [New Contact](destination_variable)
+    - [Delete Blog Post](destination_variable)
+    - [New Task](destination_variable)
+    - [New Lead](destination_variable)
+    - [New Account](destination_variable)
+    - [New Opportunity](destination_variable)
+    - [Get Fields For Object](destination_variable)
+    - [New Record](destination_variable)
+    - [Lead Is Created](destination_variable)
+    - [Contact Is Updated](destination_variable)
+    - [Update Contact](destination_variable)
+    - [Get Campaigns](destination_variable)
+    - [Get Contacts](destination_variable)
+    - [Task Is Updated](destination_variable)
 - intent: inform
   examples: |
     - I want a connector from [Salesforce]{"entity": "api", "role": "source"}
@@ -52,8 +131,7 @@ nlu:
     - I want to connect [New Contact]{"entity": "variable", "role": "source"} variable of [Salesforce]{"entity": "api", "role": "source"} to [Delete Row]{"entity": "variable", "role": "destination"} of [Sheets]{"entity": "api", "role": "destination"}
     - I want a connector from [New Contact]{"entity": "variable", "role": "source"} variable of [Salesforce]{"entity": "api", "role": "source"}
     - I want a connector to [Delete Row]{"entity": "variable", "role": "destination"} variable of [Sheets]{"entity": "api", "role": "destination"}
-    - [Salesforce]{"entity": "api"}
-    - [Salesforce]{"entity": "api"}
+    - [Salesforce](api)
     - [Mailchimp](api)
     - [Jira](api)
     - [Zoom](api)
@@ -146,9 +224,7 @@ nlu:
     - [Set Channel Topic](variable)
     - [Send Direct Message](variable)
     - [Add Star](variable)
-    - [salesforce]{"entity": "api", "value": "Salesforce"}
     - [hubspot]{"entity": "api", "value": "Hubspot"}
-    - [Task Is Created](variable)
     - [List Forms](variable)
 - intent: bot_challenge
   examples: |
@@ -159,6 +235,9 @@ nlu:
 - synonym: Salesforce
   examples: |
     - salesforce
+- synonym: Hubspot
+  examples: |
+    - hubspot
 - lookup: source
   examples: |
     - salesforce

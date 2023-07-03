@@ -26,7 +26,6 @@ class ValidateConnectorForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_connector_form"
 
-    
     def validate_source(
         self,
         slot_value: Any,
@@ -146,3 +145,48 @@ class ValidateConnectorForm(FormValidationAction):
         #     return {"destination_variable": None}
         # dispatcher.utter_message(text=f"OK! You want to have {slot_value} as the variable to be connected to ")
         # return {"destination_variable": slot_value}
+
+class ActionSourceVariable(Action):
+    def name(self) -> Text:
+        return "action_source_variable"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        with open('Connectors.csv', 'r') as file:
+            buttons = []
+            reader = csv.DictReader(file)
+            source = tracker.get_slot("source").lower()
+            destination = tracker.get_slot("destination").lower()
+            output = [row for row in reader if (row['Trigger API']==source and row['Action API'] == destination)]
+            res = output[0]['Trigger Variables'].strip('][').split(', ')
+            for variable in res:
+                print(variable)
+                buttons.append({'title': variable.strip('\'') , 'payload': "/source_variable_inform"+"{\"source_variable\":" + "\"" + variable.strip('\'')+ "\"" + "}"})
+            dispatcher.utter_message(text=f"What Trigger Variable do you want from {source}", buttons=buttons)
+
+
+class ActionDestinationVariable(Action):
+    def name(self) -> Text:
+        return "action_destination_variable"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        with open('Connectors.csv', 'r') as file:
+            buttons = []
+            reader = csv.DictReader(file)
+            source = tracker.get_slot("source").lower()
+            destination = tracker.get_slot("destination").lower()
+            output = [row for row in reader if (row['Trigger API']==source and row['Action API'] == destination)]
+            res = output[0]['Action Variables'].strip('][').split(', ')
+            variables = False
+            for variable in res:
+                buttons.append({'title': variable.strip('\'') , 'payload': "/destination_variable_inform"+"{\"destination_variable\":" + "\"" + variable.strip('\'')+ "\"" + "}"})
+            dispatcher.utter_message(text=f"What Action Variable do you want from {destination}", buttons=buttons)

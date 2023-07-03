@@ -1,6 +1,17 @@
 version: "3.1"
 
 stories:
+# - story: greet
+#   steps:
+#   - intent: greet
+#   - action: utter_source
+#   - intent: source_inform
+#   - action: utter_destination
+#   - intent: destination_inform
+#   - action: action_source_variable
+#   - intent: source_variable_inform
+#   - action: action_destination_variable
+#   - intent: destination_variable_inform
 
 # - story: interactive_story_1
 #   steps:
@@ -166,3 +177,33 @@ stories:
 #   - intent: goodbye
 #   - action: utter_goodbye
 #   - intent: inform
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_source
+  - intent: source_inform
+    entities:
+    - source: salesforce
+  - slot_was_set:
+    - source: salesforce
+  - action: utter_destination
+  - intent: destination_inform
+    entities:
+    - destination: hubspot
+  - slot_was_set:
+    - destination: hubspot
+  - action: action_source_variable
+  - intent: source_variable_inform
+    entities:
+    - source_variable: New Contact
+  - slot_was_set:
+    - source_variable: New Contact
+  - action: action_destination_variable
+  - intent: destination_variable_inform
+    entities:
+    - destination_variable: Delete Blog Post
+  - slot_was_set:
+    - destination_variable: Delete Blog Post
+  - intent: goodbye
+  - action: utter_goodbye
